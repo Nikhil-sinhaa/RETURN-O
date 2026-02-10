@@ -1,0 +1,21 @@
+{
+    "name": "RETURN 0; Competitive Programming Club",
+    "short_name": "RETURN 0;",
+    "description": "The Official Competitive Programming Club of IIIT Dharwad",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0A0A0F",
+    "theme_color": "#0A0A0F",
+    "icons": [
+        {
+            "src": "/icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "/favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        }
+    ]
+}
