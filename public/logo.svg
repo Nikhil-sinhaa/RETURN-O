@@ -1,0 +1,19 @@
+<svg width="815" height="839" viewBox="0 0 815 839" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Blue parallelogram (top right) -->
+  <path d="M200 100 L644 100 L504 278 L60 278 Z" fill="#4DA3FF"/>
+  
+  <!-- Purple parallelogram (bottom center) -->
+  <path d="M200 278 L644 530 L422 530 L60 278 Z" fill="#9D4EDD"/>
+  
+  <!-- Pink triangle (bottom left) -->
+  <path d="M200 340 L200 530 L325 530 Z" fill="#FF006E"/>
+  
+  <!-- Orange triangle (top right small) -->
+  <path d="M465 278 L644 278 L555 340 Z" fill="#FFB347"/>
+  
+  <!-- Text: RETURN 0 -->
+  <text x="120" y="650" font-family="Arial, sans-serif" font-weight="bold" font-size="96" fill="#FFB347" letter-spacing="8">RETURN 0</text>
+  
+  <!-- Text: CODING CLUB -->
+  <text x="75" y="750" font-family="Arial, sans-serif" font-weight="bold" font-size="80" fill="#FF006E" letter-spacing="12">CODING CLUB</text>
+</svg>

@@ -49,7 +49,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
@@ -74,6 +74,22 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : 'button';
 
+    // When using asChild, Slot expects exactly ONE child element
+    // leftIcon and rightIcon won't work with asChild - user must handle manually
+    if (asChild) {
+      return (
+        <Comp
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          disabled={disabled || isLoading}
+          {...props}
+        >
+          {children}
+        </Comp>
+      );
+    }
+
+    // Normal button rendering
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}

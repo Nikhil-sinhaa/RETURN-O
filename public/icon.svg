@@ -1,0 +1,16 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Blue parallelogram (top right) -->
+  <path d="M30 15 L95 15 L75 45 L10 45 Z" fill="#4DA3FF"/>
+  
+  <!-- Purple parallelogram (bottom center) -->
+  <path d="M30 45 L95 85 L65 85 L10 45 Z" fill="#9D4EDD"/>
+  
+  <!-- Pink triangle (bottom left) -->
+  <path d="M30 52 L30 85 L48 85 Z" fill="#FF006E"/>
+  
+  <!-- Orange triangle (top right small) -->
+  <path d="M70 45 L95 45 L82 52 Z" fill="#FFB347"/>
+  
+  <!-- Simplified "0;" text -->
+  <text x="35" y="115" font-family="monospace" font-weight="bold" font-size="24" fill="#FFB347">0;</text>
+</svg>
