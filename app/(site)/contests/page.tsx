@@ -2,11 +2,12 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { LiveContests } from '@/components/contests/LiveContests';
+import { RecurringContestSchedule } from '@/components/contests/RecurringContestSchedule';
 import SectionHeader from '@/components/shared/SectionHeader';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import { GradientOrb } from '@/components/effects/GradientOrb';
 import { GridBackground } from '@/components/effects/GridBackground';
-import { Code2, Info } from 'lucide-react';
+import { Code2, Info, Calendar } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Live Contests | RETURN 0; - IIIT Dharwad',
@@ -46,14 +47,26 @@ export default function ContestsPage() {
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-[#FF006E] via-[#9D4EDD] to-[#00F5FF] bg-clip-text text-transparent">
-              Live Contests
+              Competitive Programming Contests
             </span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Never miss a contest! Track upcoming competitive programming contests
+            Track recurring contest schedules and never miss upcoming contests
             from all major platforms in one place.
           </p>
         </div>
+
+        {/* Recurring Contest Schedules Section */}
+        <section className="mb-24">
+          <SectionHeader
+            title="Recurring Contest Schedules"
+            subtitle="Know when your favorite platforms hold their contests"
+            icon={<Calendar className="w-6 h-6" />}
+          />
+          <div className="mt-8">
+            <RecurringContestSchedule />
+          </div>
+        </section>
 
         {/* Platform Legend */}
         <div className="mb-12">
@@ -85,9 +98,18 @@ export default function ContestsPage() {
         </div>
 
         {/* Live Contests Grid */}
-        <Suspense fallback={<LoadingSpinner />}>
-          <LiveContests />
-        </Suspense>
+        <section>
+          <SectionHeader
+            title="Live & Upcoming Contests"
+            subtitle="Real-time contest data from all major platforms"
+            icon={<Code2 className="w-6 h-6" />}
+          />
+          <div className="mt-8">
+            <Suspense fallback={<LoadingSpinner />}>
+              <LiveContests />
+            </Suspense>
+          </div>
+        </section>
 
         {/* Tips Section */}
         <section className="mt-24">

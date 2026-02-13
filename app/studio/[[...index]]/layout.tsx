@@ -27,18 +27,20 @@ export default function StudioLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Don't render <html> or <body> - this layout is nested within the root layout
+  // Just apply studio-specific styles via a wrapper div
   return (
-    <html lang="en">
-      <body
-        style={{
-          margin: 0,
-          padding: 0,
-          // Prevent any parent styles from affecting the studio
-          overflow: 'auto',
-        }}
-      >
-        {children}
-      </body>
-    </html>
+    <div
+      style={{
+        height: '100vh',
+        width: '100%',
+        overflow: 'auto',
+        // Reset any inherited styles
+        margin: 0,
+        padding: 0,
+      }}
+    >
+      {children}
+    </div>
   );
 }

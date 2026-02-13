@@ -120,11 +120,7 @@ const deskStructure = (S: any) =>
 
       S.divider(),
 
-      // All Documents (for advanced users)
-      S.listItem()
-        .title('All Documents')
-        .icon(() => '📚')
-        .child(S.documentTypeList('').title('All Documents')),
+      // Removed "All Documents" section - was causing schema error
     ]);
 
 export default defineConfig({
@@ -166,6 +162,6 @@ export default defineConfig({
     },
   },
 
-  // Theme customization
-  theme: customTheme as any,
+  // Theme customization - removed custom theme due to compatibility issues
+  // You can re-add a simpler theme later if needed
 });

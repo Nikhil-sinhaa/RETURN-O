@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { getPlatformUrl } from '@/lib/platform-schedules';
 
 type PlatformName =
   | 'Codeforces'
@@ -18,6 +20,8 @@ interface PlatformBadgeProps {
   showLabel?: boolean;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  href?: string; // Optional link to platform contest page
+  clickable?: boolean; // Auto-link to platform if true
 }
 
 interface PlatformConfig {
@@ -122,6 +126,8 @@ export function PlatformBadge({
   showLabel = false,
   size = 'md',
   className,
+  href,
+  clickable = false,
 }: PlatformBadgeProps) {
   const normalizedPlatform = platform.toLowerCase().replace(/\s+/g, '');
   const config = platformConfigs[normalizedPlatform] || {
@@ -130,13 +136,17 @@ export function PlatformBadge({
   };
   const sizeConfig = sizeClasses[size];
 
-  return (
+  // Determine the link URL
+  const linkUrl = href || (clickable ? getPlatformUrl(platform) : undefined);
+
+  const badgeContent = (
     <div
       className={cn(
         'inline-flex items-center rounded-full font-medium',
         config.bgColor,
         config.textColor,
         sizeConfig.container,
+        linkUrl && 'cursor-pointer transition-all hover:opacity-80',
         className
       )}
     >
@@ -163,6 +173,22 @@ export function PlatformBadge({
       {showLabel && <span>{config.name}</span>}
     </div>
   );
+
+  // Wrap in Link if href or clickable is provided
+  if (linkUrl) {
+    return (
+      <Link
+        href={linkUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block"
+      >
+        {badgeContent}
+      </Link>
+    );
+  }
+
+  return badgeContent;
 }
 
 // Platform icon only (for compact displays)

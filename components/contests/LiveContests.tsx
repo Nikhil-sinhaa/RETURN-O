@@ -9,6 +9,7 @@ import { PlatformBadge } from './PlatformBadge';
 import { Button } from '@/components/ui/button';
 import { CardSkeleton } from '@/components/shared/LoadingSpinner';
 import { cn } from '@/lib/utils';
+import { getUpcomingRecurringContests } from '@/lib/upcoming-contests';
 import type { Platform } from '@/lib/types';
 
 const PLATFORMS: Platform[] = [
@@ -46,7 +47,22 @@ export function LiveContests({
   };
 
   const filteredContests = useMemo(() => {
-    let filtered = contests;
+    // Get recurring contests
+    const recurringContests = getUpcomingRecurringContests();
+
+    // Merge with API contests (avoid duplicates by filtering out recurring contests if API has them)
+    let allContests = [...contests, ...recurringContests];
+
+    // Remove duplicates (prefer API data over recurring)
+    const contestMap = new Map();
+    allContests.forEach(contest => {
+      const key = `${contest.site}-${contest.start_time}`;
+      if (!contestMap.has(key) || !('isRecurring' in contest)) {
+        contestMap.set(key, contest);
+      }
+    });
+
+    let filtered = Array.from(contestMap.values());
 
     if (selectedPlatform !== 'All') {
       filtered = filtered.filter(
@@ -167,7 +183,7 @@ export function LiveContests({
                   All Platforms
                 </span>
               ) : (
-                <PlatformBadge platform={platform} showLabel size="sm" />
+                <PlatformBadge platform={platform} showLabel size="sm" clickable />
               )}
             </button>
           ))}
