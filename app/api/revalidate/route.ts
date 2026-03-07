@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { _type, slug } = body;
 
-    console.log(`Revalidation triggered for: ${_type}`, slug ? `(${slug})` : '');
+    // Revalidation logging removed for production (use APM/logging service instead)
 
     // Revalidate based on content type
     switch (_type) {
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
         revalidateTag(_type);
       }
     } catch {
-      console.log('Tag revalidation not available');
+      // Silently handle tag revalidation failure
     }
 
     return NextResponse.json({

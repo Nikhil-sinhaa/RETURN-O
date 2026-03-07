@@ -23,12 +23,13 @@ interface Event {
   title: string;
   eventType: string;
   description?: string;
-  date?: string; // Make 'date' optional if it may be missing
+  date?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content?: any;
   registrationLink?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   image?: any;
   location?: string;
-  // Add other properties as needed
 }
 
 interface EventPageProps {
@@ -56,7 +57,7 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
     openGraph: {
       title: event.title,
       description: event.description,
-      images: (event as any).image ? [{ url: urlForImage((event as any).image).url() }] : [],
+      images: event.image ? [{ url: urlForImage(event.image).url() }] : [],
     },
   };
 }
@@ -162,14 +163,14 @@ export default async function EventPage({ params }: EventPageProps) {
                 </div>
               </div>
 
-              {(event as any).location && (
+              {event.location && (
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-[#FF006E]/20">
                     <MapPin className="w-5 h-5 text-[#FF006E]" />
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Location</p>
-                    <p className="text-sm text-white">{(event as any).location as string}</p>
+                    <p className="text-sm text-white">{event.location}</p>
                   </div>
                 </div>
               )}
@@ -178,10 +179,10 @@ export default async function EventPage({ params }: EventPageProps) {
           </header>
 
           {/* Event Image */}
-          {(event as any).image && (
+          {event.image && (
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-12">
               <Image
-                src={urlForImage((event as any).image).width(1200).height(675).url()}
+                src={urlForImage(event.image).width(1200).height(675).url()}
                 alt={event.title}
                 fill
                 className="object-cover"

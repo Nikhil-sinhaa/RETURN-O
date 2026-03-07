@@ -9,6 +9,7 @@ import { Copy, Check, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
 interface PortableTextRendererProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content: any;
   className?: string;
 }
@@ -75,6 +76,7 @@ function CodeBlock({
 function ImageBlock({
   value,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: { asset: any; alt?: string; caption?: string };
 }) {
   const imageUrl = urlForImage(value)?.url();

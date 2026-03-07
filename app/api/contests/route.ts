@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { fetchAllContests } from '@/lib/contests';
 
 // Cache contests for 60 seconds
-let cachedContests: any = null;
+let cachedContests: unknown = null;
 let cacheTime: number = 0;
 const CACHE_DURATION = 60 * 1000; // 60 seconds
 
@@ -47,8 +47,8 @@ export async function GET(_request: NextRequest) {
         },
       }
     );
-  } catch (error) {
-    console.error('Failed to fetch contests:', error);
+  } catch {
+    // Fetch failed, return cached data if available
 
     // Return cached data if available, even if stale
     if (cachedContests) {

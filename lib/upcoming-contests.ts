@@ -58,7 +58,7 @@ function parseTimeToDate(dateObj: Date, timeString: string): Date {
         return result;
     }
 
-    let [, hourStr, minuteStr, period] = timeMatch;
+    const [, hourStr, minuteStr, period] = timeMatch;
 
     if (!hourStr || !minuteStr) {
         result.setHours(12, 0, 0, 0);

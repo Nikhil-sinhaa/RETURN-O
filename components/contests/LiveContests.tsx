@@ -51,7 +51,7 @@ export function LiveContests({
     const recurringContests = getUpcomingRecurringContests();
 
     // Merge with API contests (avoid duplicates by filtering out recurring contests if API has them)
-    let allContests = [...contests, ...recurringContests];
+    const allContests = [...contests, ...recurringContests];
 
     // Remove duplicates (prefer API data over recurring)
     const contestMap = new Map();

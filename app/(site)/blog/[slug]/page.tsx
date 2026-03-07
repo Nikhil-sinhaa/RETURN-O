@@ -52,12 +52,26 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
-function calculateReadTime(content: any[] | undefined): number {
-  if (!content) return 5;
+function calculateReadTime(content: unknown): number {
+  if (!content || !Array.isArray(content)) return 5;
+
   const text = content
-    .filter((block: any) => block._type === 'block')
-    .map((block: any) => block.children?.map((child: any) => child.text).join(''))
+    .filter((block): block is { _type: string; children?: unknown[] } =>
+      typeof block === 'object' && block !== null && '_type' in block && block._type === 'block'
+    )
+    .map((block) => {
+      if (!Array.isArray(block.children)) return '';
+      return block.children
+        .map((child) => {
+          if (typeof child === 'object' && child !== null && 'text' in child) {
+            return typeof child.text === 'string' ? child.text : '';
+          }
+          return '';
+        })
+        .join('');
+    })
     .join(' ');
+
   const wordsPerMinute = 200;
   const words = text.split(/\s+/).length;
   return Math.ceil(words / wordsPerMinute) || 5;

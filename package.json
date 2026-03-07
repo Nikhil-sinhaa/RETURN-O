@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "taskkill /F /IM node.exe /T 2>nul & npm run dev",
+    "kill:port": "taskkill /F /IM node.exe /T",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

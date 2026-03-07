@@ -62,7 +62,7 @@ export function GridBackground({
             backgroundSize: `100% ${gridSize}px`,
           }}
         />
-        
+
         {/* Vertical lines with gradient */}
         <div
           className="absolute inset-0"
@@ -85,7 +85,7 @@ export function GridBackground({
             animate={{
               '--x': ['0%', '100%', '0%'],
               '--y': ['0%', '100%', '0%'],
-            } as any}
+            } as Record<string, string[]>}
             transition={{
               duration: 20,
               repeat: Infinity,
@@ -144,11 +144,11 @@ export function ScanlineOverlay({ className }: { className?: string }) {
 }
 
 // Noise texture overlay
-export function NoiseOverlay({ 
-  opacity = 0.02, 
-  className 
-}: { 
-  opacity?: number; 
+export function NoiseOverlay({
+  opacity = 0.02,
+  className
+}: {
+  opacity?: number;
   className?: string;
 }) {
   return (

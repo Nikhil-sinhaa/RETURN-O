@@ -68,7 +68,7 @@ export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
     ref
   ) => {
     const colorStyles = glowColors[glowColor];
-    
+
     const baseClasses = cn(
       'relative overflow-hidden rounded-xl backdrop-blur-xl',
       variants[variant],
@@ -80,6 +80,7 @@ export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
 
     if (animated) {
       return (
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         <motion.div
           ref={ref}
           className={baseClasses}
@@ -99,7 +100,7 @@ export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
               )}
             />
           )}
-          
+
           {children}
         </motion.div>
       );

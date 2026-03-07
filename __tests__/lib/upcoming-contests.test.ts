@@ -25,7 +25,7 @@ describe('upcoming-contests utility', () => {
         it('should mark contests with isRecurring flag', () => {
             const contests = getUpcomingRecurringContests();
             contests.forEach(contest => {
-                expect(contest.isRec urring).toBe(true);
+                expect(contest.isRecurring).toBe(true);
             });
         });
 
