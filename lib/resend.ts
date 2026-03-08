@@ -5,7 +5,7 @@ import { Resend } from 'resend';
 import type { ContactFormData } from './types';
 
 // Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
 
 // Email configuration
 const FROM_EMAIL = process.env.FROM_EMAIL || 'RETURN 0; <noreply@return0.iiitdwd.ac.in>';
